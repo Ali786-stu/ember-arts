@@ -5,50 +5,27 @@ import portrait from "@/assets/lakshmi-portrait.jpg";
 // Skill icons with brand-ish colors (using simple letters/symbols as logos)
 const rings = [
   {
-    size: 380,
-    duration: 28,
+    size: 480,
+    duration: 32,
     reverse: false,
     items: [
       { label: "Ps", color: "#31A8FF", bg: "#001E36" },
       { label: "Ai", color: "#FF9A00", bg: "#330000" },
       { label: "Id", color: "#FF3366", bg: "#49021F" },
       { label: "Ae", color: "#9999FF", bg: "#00005B" },
-    ],
-  },
-  {
-    size: 470,
-    duration: 36,
-    reverse: true,
-    items: [
       { label: "CD", color: "#7CC242", bg: "#0E2200" },
-      { label: "Fg", color: "#F24E1E", bg: "#2C0A02" },
-      { label: "Xd", color: "#FF61F6", bg: "#2E0029" },
-      { label: "Lr", color: "#31A8FF", bg: "#001E36" },
-      { label: "Pr", color: "#9999FF", bg: "#00005B" },
     ],
   },
   {
-    size: 560,
-    duration: 44,
-    reverse: false,
-    items: [
-      { label: "✦", color: "#D4AF6E", bg: "#2A1F0A" },
-      { label: "◆", color: "#9B6EDC", bg: "#1A0F2E" },
-      { label: "✺", color: "#D4AF6E", bg: "#2A1F0A" },
-      { label: "◇", color: "#9B6EDC", bg: "#1A0F2E" },
-      { label: "✧", color: "#D4AF6E", bg: "#2A1F0A" },
-      { label: "❖", color: "#9B6EDC", bg: "#1A0F2E" },
-    ],
-  },
-  {
-    size: 650,
-    duration: 60,
+    size: 620,
+    duration: 50,
     reverse: true,
     items: [
       { label: "Brand", color: "#D4AF6E", bg: "#1a1108" },
       { label: "Type", color: "#9B6EDC", bg: "#150a25" },
       { label: "Logo", color: "#D4AF6E", bg: "#1a1108" },
       { label: "Print", color: "#9B6EDC", bg: "#150a25" },
+      { label: "Social", color: "#D4AF6E", bg: "#1a1108" },
     ],
   },
 ];
@@ -141,7 +118,7 @@ export function Hero() {
 
           {/* Center portrait */}
           <motion.div
-            className="relative h-[260px] w-[260px] md:h-[300px] md:w-[300px] rounded-full overflow-hidden glow-border shadow-luxury"
+            className="relative h-[340px] w-[340px] md:h-[400px] md:w-[400px] rounded-full overflow-hidden glow-border shadow-luxury"
             animate={{ y: [0, -10, 0] }}
             transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
             data-cursor="hover"
