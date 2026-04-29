@@ -5,7 +5,7 @@ import portrait from "@/assets/lakshmi-portrait.jpg";
 // Skill icons with brand-ish colors (using simple letters/symbols as logos)
 const rings = [
   {
-    size: 480,
+    size: 360,
     duration: 32,
     reverse: false,
     items: [
@@ -17,7 +17,7 @@ const rings = [
     ],
   },
   {
-    size: 620,
+    size: 470,
     duration: 50,
     reverse: true,
     items: [
