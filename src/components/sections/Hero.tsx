@@ -1,42 +1,113 @@
-import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import heroBg from "@/assets/hero-bg.jpg";
+import portrait from "@/assets/lakshmi-portrait.jpg";
 
-const phrases = ["Visual Stories", "Bold Identities", "Aesthetic Designs", "Brand Worlds"];
+// Skill icons with brand-ish colors (using simple letters/symbols as logos)
+const rings = [
+  {
+    size: 380,
+    duration: 28,
+    reverse: false,
+    items: [
+      { label: "Ps", color: "#31A8FF", bg: "#001E36" },
+      { label: "Ai", color: "#FF9A00", bg: "#330000" },
+      { label: "Id", color: "#FF3366", bg: "#49021F" },
+      { label: "Ae", color: "#9999FF", bg: "#00005B" },
+    ],
+  },
+  {
+    size: 470,
+    duration: 36,
+    reverse: true,
+    items: [
+      { label: "CD", color: "#7CC242", bg: "#0E2200" },
+      { label: "Fg", color: "#F24E1E", bg: "#2C0A02" },
+      { label: "Xd", color: "#FF61F6", bg: "#2E0029" },
+      { label: "Lr", color: "#31A8FF", bg: "#001E36" },
+      { label: "Pr", color: "#9999FF", bg: "#00005B" },
+    ],
+  },
+  {
+    size: 560,
+    duration: 44,
+    reverse: false,
+    items: [
+      { label: "✦", color: "#D4AF6E", bg: "#2A1F0A" },
+      { label: "◆", color: "#9B6EDC", bg: "#1A0F2E" },
+      { label: "✺", color: "#D4AF6E", bg: "#2A1F0A" },
+      { label: "◇", color: "#9B6EDC", bg: "#1A0F2E" },
+      { label: "✧", color: "#D4AF6E", bg: "#2A1F0A" },
+      { label: "❖", color: "#9B6EDC", bg: "#1A0F2E" },
+    ],
+  },
+  {
+    size: 650,
+    duration: 60,
+    reverse: true,
+    items: [
+      { label: "Brand", color: "#D4AF6E", bg: "#1a1108" },
+      { label: "Type", color: "#9B6EDC", bg: "#150a25" },
+      { label: "Logo", color: "#D4AF6E", bg: "#1a1108" },
+      { label: "Print", color: "#9B6EDC", bg: "#150a25" },
+    ],
+  },
+];
+
+function OrbitRing({
+  size,
+  duration,
+  reverse,
+  items,
+}: {
+  size: number;
+  duration: number;
+  reverse: boolean;
+  items: { label: string; color: string; bg: string }[];
+}) {
+  return (
+    <motion.div
+      className="absolute left-1/2 top-1/2 rounded-full border border-gold/15"
+      style={{ width: size, height: size, marginLeft: -size / 2, marginTop: -size / 2 }}
+      animate={{ rotate: reverse ? -360 : 360 }}
+      transition={{ duration, repeat: Infinity, ease: "linear" }}
+    >
+      {items.map((it, i) => {
+        const angle = (i / items.length) * 360;
+        return (
+          <div
+            key={i}
+            className="absolute left-1/2 top-1/2 h-0 w-0"
+            style={{ transform: `rotate(${angle}deg) translateY(-${size / 2}px)` }}
+          >
+            <div
+              className="absolute -translate-x-1/2 -translate-y-1/2 flex items-center justify-center rounded-2xl glass-strong shadow-glow font-display text-sm font-bold"
+              style={{
+                width: it.label.length > 2 ? 64 : 44,
+                height: 44,
+                background: `linear-gradient(135deg, ${it.bg}, oklch(0.17 0.02 280 / 0.8))`,
+                color: it.color,
+                transform: `translate(-50%, -50%) rotate(${reverse ? angle : -angle}deg)`,
+                boxShadow: `0 0 20px ${it.color}40`,
+              }}
+            >
+              {it.label}
+            </div>
+          </div>
+        );
+      })}
+    </motion.div>
+  );
+}
 
 export function Hero() {
-  const [text, setText] = useState("");
-  const [idx, setIdx] = useState(0);
-  const [del, setDel] = useState(false);
-
-  useEffect(() => {
-    const current = phrases[idx];
-    const speed = del ? 50 : 110;
-    const t = setTimeout(() => {
-      if (!del && text === current) {
-        setTimeout(() => setDel(true), 1500);
-        return;
-      }
-      if (del && text === "") {
-        setDel(false);
-        setIdx((i) => (i + 1) % phrases.length);
-        return;
-      }
-      setText(del ? current.substring(0, text.length - 1) : current.substring(0, text.length + 1));
-    }, speed);
-    return () => clearTimeout(t);
-  }, [text, del, idx]);
-
   return (
     <section id="home" className="relative min-h-screen w-full overflow-hidden flex items-center justify-center">
-      {/* BG */}
       <div className="absolute inset-0 z-0">
         <img src={heroBg} alt="" className="absolute inset-0 h-full w-full object-cover opacity-50" width={1920} height={1080} />
         <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/40 to-background" />
         <div className="absolute inset-0 bg-glow" />
       </div>
 
-      {/* Floating shapes */}
       <motion.div
         className="absolute top-20 left-10 h-32 w-32 rounded-full bg-violet/20 blur-3xl"
         animate={{ y: [0, -30, 0], x: [0, 20, 0] }}
@@ -48,83 +119,56 @@ export function Hero() {
         transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
       />
 
-      <div className="relative z-10 mx-auto max-w-6xl px-6 text-center">
+      <div className="relative z-10 mx-auto w-full max-w-7xl px-6 grid lg:grid-cols-2 gap-12 items-center">
+        {/* Left intentionally empty */}
+        <div className="hidden lg:block" />
+
+        {/* Right: portrait with rotating skill rings */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 2.4, duration: 0.7 }}
-          className="inline-flex items-center gap-2 glass rounded-full px-4 py-1.5 text-xs tracking-[0.3em] uppercase text-muted-foreground"
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 2.4, duration: 1, ease: "easeOut" }}
+          className="relative mx-auto flex items-center justify-center"
+          style={{ width: "min(90vw, 680px)", height: "min(90vw, 680px)" }}
         >
-          <span className="h-1.5 w-1.5 rounded-full bg-gold animate-pulse" /> Available for new projects
-        </motion.div>
+          {/* Glow */}
+          <div className="absolute inset-10 rounded-full bg-luxury blur-3xl opacity-30" />
 
-        <motion.h1
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 2.6, duration: 0.9 }}
-          className="mt-8 font-display text-6xl md:text-8xl lg:text-9xl leading-[0.95] tracking-tight"
-        >
-          <span className="block text-foreground">Lakshmi</span>
-          <span className="block text-gradient italic">Verma</span>
-        </motion.h1>
+          {/* Rings */}
+          {rings.map((r, i) => (
+            <OrbitRing key={i} {...r} />
+          ))}
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 3, duration: 0.6 }}
-          className="mt-8 flex flex-wrap items-center justify-center gap-2 font-display text-2xl md:text-4xl"
-        >
-          <span className="text-muted-foreground italic">Crafting</span>
-          <span className="min-w-[14ch] text-left text-gold-gradient">
-            {text}
-            <span className="cursor-blink ml-1 inline-block h-7 md:h-9 w-[2px] bg-gold align-middle" />
-          </span>
-        </motion.div>
-
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 3.3, duration: 0.6 }}
-          className="mx-auto mt-6 max-w-xl text-muted-foreground"
-        >
-          Graphic Designer based in Lucknow — turning ideas into modern, aesthetic, and meaningful visual experiences.
-        </motion.p>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 3.5, duration: 0.6 }}
-          className="mt-10 flex flex-wrap items-center justify-center gap-4"
-        >
-          <a
-            href="#portfolio"
-            className="group relative inline-flex items-center gap-3 overflow-hidden rounded-full bg-luxury px-8 py-4 text-sm font-semibold text-primary-foreground shadow-luxury transition-transform hover:scale-105"
+          {/* Center portrait */}
+          <motion.div
+            className="relative h-[260px] w-[260px] md:h-[300px] md:w-[300px] rounded-full overflow-hidden glow-border shadow-luxury"
+            animate={{ y: [0, -10, 0] }}
+            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+            data-cursor="hover"
           >
-            <span className="relative z-10">View Work</span>
-            <svg className="relative z-10 h-4 w-4 transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14M13 5l7 7-7 7" />
-            </svg>
-          </a>
-          <a
-            href="#contact"
-            className="rounded-full glass px-8 py-4 text-sm font-semibold text-foreground hover:bg-foreground/5 transition-colors"
-          >
-            Get in Touch
-          </a>
-        </motion.div>
-
-        {/* Scroll indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 4 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2"
-        >
-          <div className="flex h-10 w-6 items-start justify-center rounded-full border border-gold/40 p-1.5">
-            <motion.div className="h-2 w-1 rounded-full bg-gold" animate={{ y: [0, 12, 0] }} transition={{ duration: 1.6, repeat: Infinity }} />
-          </div>
+            <img
+              src={portrait}
+              alt="Lakshmi Verma"
+              className="h-full w-full object-cover"
+              width={600}
+              height={600}
+            />
+            <div className="absolute inset-0 ring-1 ring-inset ring-gold/30 rounded-full" />
+          </motion.div>
         </motion.div>
       </div>
+
+      {/* Scroll indicator */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 3.5 }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10"
+      >
+        <div className="flex h-10 w-6 items-start justify-center rounded-full border border-gold/40 p-1.5">
+          <motion.div className="h-2 w-1 rounded-full bg-gold" animate={{ y: [0, 12, 0] }} transition={{ duration: 1.6, repeat: Infinity }} />
+        </div>
+      </motion.div>
     </section>
   );
 }
