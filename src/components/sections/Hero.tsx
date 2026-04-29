@@ -1,31 +1,39 @@
 import { motion } from "framer-motion";
+import { Palette, Type, PenTool, Printer, Share2, Sparkles, Camera, Layers } from "lucide-react";
+import { useEffect, useState } from "react";
 import heroBg from "@/assets/hero-bg.jpg";
 import portrait from "@/assets/lakshmi-portrait.jpg";
 
-// Skill icons with brand-ish colors (using simple letters/symbols as logos)
-const rings = [
+type RingItem =
+  | { kind: "text"; label: string; color: string; bg: string }
+  | { kind: "icon"; Icon: typeof Palette; color: string; bg: string };
+
+const rings: { size: number; duration: number; reverse: boolean; items: RingItem[] }[] = [
   {
     size: 360,
     duration: 32,
     reverse: false,
     items: [
-      { label: "Ps", color: "#31A8FF", bg: "#001E36" },
-      { label: "Ai", color: "#FF9A00", bg: "#330000" },
-      { label: "Id", color: "#FF3366", bg: "#49021F" },
-      { label: "Ae", color: "#9999FF", bg: "#00005B" },
-      { label: "CD", color: "#7CC242", bg: "#0E2200" },
+      { kind: "text", label: "Ps", color: "#31A8FF", bg: "#001E36" },
+      { kind: "text", label: "Ai", color: "#FF9A00", bg: "#330000" },
+      { kind: "text", label: "Id", color: "#FF3366", bg: "#49021F" },
+      { kind: "text", label: "Ae", color: "#9999FF", bg: "#00005B" },
+      { kind: "text", label: "CD", color: "#7CC242", bg: "#0E2200" },
     ],
   },
   {
     size: 470,
     duration: 50,
-    reverse: true,
+    reverse: false,
     items: [
-      { label: "Brand", color: "#D4AF6E", bg: "#1a1108" },
-      { label: "Type", color: "#9B6EDC", bg: "#150a25" },
-      { label: "Logo", color: "#D4AF6E", bg: "#1a1108" },
-      { label: "Print", color: "#9B6EDC", bg: "#150a25" },
-      { label: "Social", color: "#D4AF6E", bg: "#1a1108" },
+      { kind: "icon", Icon: Palette, color: "#D4AF6E", bg: "#1a1108" },
+      { kind: "icon", Icon: Type, color: "#9B6EDC", bg: "#150a25" },
+      { kind: "icon", Icon: PenTool, color: "#D4AF6E", bg: "#1a1108" },
+      { kind: "icon", Icon: Printer, color: "#9B6EDC", bg: "#150a25" },
+      { kind: "icon", Icon: Share2, color: "#D4AF6E", bg: "#1a1108" },
+      { kind: "icon", Icon: Camera, color: "#9B6EDC", bg: "#150a25" },
+      { kind: "icon", Icon: Layers, color: "#D4AF6E", bg: "#1a1108" },
+      { kind: "icon", Icon: Sparkles, color: "#9B6EDC", bg: "#150a25" },
     ],
   },
 ];
@@ -35,39 +43,55 @@ function OrbitRing({
   duration,
   reverse,
   items,
+  scale,
 }: {
   size: number;
   duration: number;
   reverse: boolean;
-  items: { label: string; color: string; bg: string }[];
+  items: RingItem[];
+  scale: number;
 }) {
+  const scaledSize = size * scale;
+  const chipSize = Math.max(34, 44 * scale);
   return (
     <motion.div
       className="absolute left-1/2 top-1/2 rounded-full border border-gold/15"
-      style={{ width: size, height: size, marginLeft: -size / 2, marginTop: -size / 2 }}
+      style={{
+        width: scaledSize,
+        height: scaledSize,
+        marginLeft: -scaledSize / 2,
+        marginTop: -scaledSize / 2,
+      }}
       animate={{ rotate: reverse ? -360 : 360 }}
       transition={{ duration, repeat: Infinity, ease: "linear" }}
     >
       {items.map((it, i) => {
         const angle = (i / items.length) * 360;
+        const isText = it.kind === "text";
+        const w = isText && (it as any).label.length > 2 ? chipSize * 1.5 : chipSize;
         return (
           <div
             key={i}
             className="absolute left-1/2 top-1/2 h-0 w-0"
-            style={{ transform: `rotate(${angle}deg) translateY(-${size / 2}px)` }}
+            style={{ transform: `rotate(${angle}deg) translateY(-${scaledSize / 2}px)` }}
           >
             <div
-              className="absolute -translate-x-1/2 -translate-y-1/2 flex items-center justify-center rounded-2xl glass-strong shadow-glow font-display text-sm font-bold"
+              className="absolute flex items-center justify-center rounded-full glass-strong shadow-glow font-display font-bold"
               style={{
-                width: it.label.length > 2 ? 64 : 44,
-                height: 44,
-                background: `linear-gradient(135deg, ${it.bg}, oklch(0.17 0.02 280 / 0.8))`,
+                width: w,
+                height: chipSize,
+                background: `linear-gradient(135deg, ${it.bg}, oklch(0.17 0.02 280 / 0.85))`,
                 color: it.color,
                 transform: `translate(-50%, -50%) rotate(${reverse ? angle : -angle}deg)`,
-                boxShadow: `0 0 20px ${it.color}40`,
+                boxShadow: `0 0 18px ${it.color}55`,
+                fontSize: chipSize * 0.36,
               }}
             >
-              {it.label}
+              {it.kind === "text" ? (
+                it.label
+              ) : (
+                <it.Icon size={Math.round(chipSize * 0.5)} strokeWidth={2} />
+              )}
             </div>
           </div>
         );
@@ -77,6 +101,26 @@ function OrbitRing({
 }
 
 export function Hero() {
+  const [scale, setScale] = useState(1);
+
+  useEffect(() => {
+    const update = () => {
+      const w = window.innerWidth;
+      if (w < 380) setScale(0.5);
+      else if (w < 480) setScale(0.58);
+      else if (w < 640) setScale(0.68);
+      else if (w < 768) setScale(0.78);
+      else if (w < 1024) setScale(0.88);
+      else setScale(1);
+    };
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
+
+  const portraitSize = Math.round(280 * scale);
+  const stageSize = Math.round(540 * scale);
+
   return (
     <section id="home" className="relative min-h-screen w-full overflow-hidden flex items-center justify-center">
       <div className="absolute inset-0 z-0">
@@ -97,7 +141,7 @@ export function Hero() {
       />
 
       <div className="relative z-10 mx-auto w-full max-w-7xl px-6 grid lg:grid-cols-2 gap-12 items-center">
-        {/* Left intentionally empty */}
+        {/* Left intentionally empty on desktop */}
         <div className="hidden lg:block" />
 
         {/* Right: portrait with rotating skill rings */}
@@ -106,19 +150,17 @@ export function Hero() {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 2.4, duration: 1, ease: "easeOut" }}
           className="relative mx-auto flex items-center justify-center"
-          style={{ width: "min(85vw, 520px)", height: "min(85vw, 520px)" }}
+          style={{ width: stageSize, height: stageSize }}
         >
-          {/* Glow */}
           <div className="absolute inset-10 rounded-full bg-luxury blur-3xl opacity-30" />
 
-          {/* Rings */}
           {rings.map((r, i) => (
-            <OrbitRing key={i} {...r} />
+            <OrbitRing key={i} {...r} scale={scale} />
           ))}
 
-          {/* Center portrait */}
           <motion.div
-            className="relative h-[240px] w-[240px] md:h-[280px] md:w-[280px] rounded-full overflow-hidden glow-border shadow-luxury"
+            className="relative rounded-full overflow-hidden glow-border shadow-luxury"
+            style={{ width: portraitSize, height: portraitSize }}
             animate={{ y: [0, -10, 0] }}
             transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
             data-cursor="hover"
@@ -135,7 +177,6 @@ export function Hero() {
         </motion.div>
       </div>
 
-      {/* Scroll indicator */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
