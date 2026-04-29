@@ -106,7 +106,7 @@ export function Hero() {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 2.4, duration: 1, ease: "easeOut" }}
           className="relative mx-auto flex items-center justify-center"
-          style={{ width: "min(90vw, 680px)", height: "min(90vw, 680px)" }}
+          style={{ width: "min(85vw, 520px)", height: "min(85vw, 520px)" }}
         >
           {/* Glow */}
           <div className="absolute inset-10 rounded-full bg-luxury blur-3xl opacity-30" />
@@ -118,7 +118,7 @@ export function Hero() {
 
           {/* Center portrait */}
           <motion.div
-            className="relative h-[340px] w-[340px] md:h-[400px] md:w-[400px] rounded-full overflow-hidden glow-border shadow-luxury"
+            className="relative h-[240px] w-[240px] md:h-[280px] md:w-[280px] rounded-full overflow-hidden glow-border shadow-luxury"
             animate={{ y: [0, -10, 0] }}
             transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
             data-cursor="hover"
