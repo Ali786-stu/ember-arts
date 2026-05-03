@@ -7,20 +7,27 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+# Dependencies
 node_modules
+.pnp
+.pnp.js
+
+# Build Output
 dist
 dist-ssr
 .output
 .vinxi
 .tanstack/**
 .nitro
-*.local
 
-# Wrangler / Cloudflare
-.wrangler/
-.dev.vars
+# Environment Variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
 
-# Editor directories and files
+# Editor / IDE
 .vscode/*
 !.vscode/extensions.json
 .idea
@@ -30,3 +37,13 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Cloudflare / Wrangler
+.wrangler/
+.dev.vars
+
+# Temporary Storage / AI Artifacts
+.tempmediaStorage
+brain/
+scratch/
+.gemini/

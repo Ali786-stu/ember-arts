@@ -140,16 +140,88 @@ export function Hero() {
         transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
       />
 
-      <div className="relative z-10 mx-auto w-full max-w-7xl px-6 grid lg:grid-cols-2 gap-12 items-center">
-        {/* Left intentionally empty on desktop */}
-        <div className="hidden lg:block" />
+      <div className="relative z-10 mx-auto w-full max-w-7xl px-6 flex flex-col lg:grid lg:grid-cols-2 gap-6 lg:gap-12 items-center pt-20 lg:pt-0">
+        
+        {/* Mobile Badge */}
+        <motion.div 
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.5, duration: 0.8 }}
+          className="lg:hidden flex w-full justify-center order-1 z-20"
+        >
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-gold/30 bg-gold/5 glass backdrop-blur-md">
+            <span className="h-2 w-2 rounded-full bg-gold animate-pulse shadow-glow" />
+            <span className="text-xs font-medium tracking-wide text-gold-soft uppercase">Available for freelance</span>
+          </div>
+        </motion.div>
+
+        {/* Left: Introduction */}
+        <motion.div
+          initial={{ opacity: 0, x: -30 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 1.5, duration: 1, ease: "easeOut" }}
+          className="flex flex-col items-center lg:items-start text-center lg:text-left space-y-5 lg:space-y-6 order-3 lg:order-1"
+        >
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.8, duration: 0.8 }}
+            className="hidden lg:inline-flex items-center gap-2 px-4 py-2 rounded-full border border-gold/30 bg-gold/5 glass backdrop-blur-md"
+          >
+            <span className="h-2 w-2 rounded-full bg-gold animate-pulse shadow-glow" />
+            <span className="text-sm font-medium tracking-wide text-gold-soft uppercase">Available for freelance</span>
+          </motion.div>
+          
+          <motion.h1 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 2.0, duration: 0.8 }}
+            className="text-5xl sm:text-6xl lg:text-7xl font-display font-bold leading-[1.1]"
+          >
+            Creative <br className="hidden sm:block" />
+            <span className="text-gold-gradient animate-gradient">
+              Visual Artist
+            </span>
+          </motion.h1>
+          
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 2.2, duration: 0.8 }}
+            className="text-base sm:text-lg md:text-xl text-white/70 max-w-lg font-light leading-relaxed"
+          >
+            Hi, I'm <strong className="text-white font-medium">Lakshmi Verma</strong>. I specialize in crafting stunning visual identities, digital illustrations, and immersive brand experiences.
+          </motion.p>
+          
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 2.4, duration: 0.8 }}
+            className="flex flex-wrap justify-center lg:justify-start items-center gap-4 pt-2 lg:pt-4"
+          >
+            <a 
+              href="#portfolio" 
+              className="px-6 sm:px-8 py-3 sm:py-3.5 rounded-full bg-gold text-background text-sm sm:text-base font-medium hover:bg-white transition-colors duration-300 shadow-glow"
+              data-cursor="hover"
+            >
+              Explore My Work
+            </a>
+            <a 
+              href="#contact" 
+              className="px-6 sm:px-8 py-3 sm:py-3.5 rounded-full border border-gold/30 text-white text-sm sm:text-base hover:bg-gold/10 transition-colors duration-300"
+              data-cursor="hover"
+            >
+              Let's Talk
+            </a>
+          </motion.div>
+        </motion.div>
 
         {/* Right: portrait with rotating skill rings */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 2.4, duration: 1, ease: "easeOut" }}
-          className="relative mx-auto flex items-center justify-center"
+          className="relative mx-auto flex items-center justify-center order-2 lg:order-2 my-4 lg:my-0"
           style={{ width: stageSize, height: stageSize }}
         >
           <div className="absolute inset-10 rounded-full bg-luxury blur-3xl opacity-30" />

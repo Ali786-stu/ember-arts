@@ -89,7 +89,7 @@ export function Portfolio() {
                 onClick={() => setOpen(item)}
                 data-cursor="hover"
                 className={`group relative overflow-hidden rounded-3xl glass cursor-none ${
-                  item.tall ? "row-span-2 aspect-[3/5]" : "aspect-square"
+                  item.tall ? "md:row-span-2 aspect-[3/5]" : "aspect-square"
                 }`}
               >
                 <img
