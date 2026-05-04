@@ -54,7 +54,7 @@ export function Portfolio() {
             <button
               key={t}
               onClick={() => setTab(t)}
-              data-cursor="hover"
+              data-cursorpointer={true}
               className={`relative rounded-full px-5 py-2.5 text-sm font-medium transition-all ${
                 tab === t ? "text-primary-foreground" : "text-muted-foreground hover:text-foreground"
               }`}
@@ -87,7 +87,7 @@ export function Portfolio() {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: i * 0.08 }}
                 onClick={() => setOpen(item)}
-                data-cursor="hover"
+                data-cursorpointer={true}
                 className={`group relative overflow-hidden rounded-3xl glass cursor-none ${
                   item.tall ? "md:row-span-2 aspect-[3/5]" : "aspect-square"
                 }`}

@@ -4,36 +4,26 @@ import { useEffect, useState } from "react";
 import heroBg from "@/assets/hero-bg.jpg";
 import portrait from "@/assets/lakshmi-portrait.jpg";
 
-type RingItem =
-  | { kind: "text"; label: string; color: string; bg: string }
-  | { kind: "icon"; Icon: typeof Palette; color: string; bg: string };
+// Real Software Icons
+import aiIcon from "@/assets/hero/39f1491e-90e2-47c0-b628-eb1605784772-Photoroom.png";
+import cdIcon from "@/assets/hero/476a1b78-7a54-430d-bffa-5c8a916327a9-Photoroom.png";
+import aeIcon from "@/assets/hero/531e17cc-c072-4bac-a82c-72224d0c9883-Photoroom.png";
+import psIcon from "@/assets/hero/a156ef35-58ec-49df-bc23-ef804a4a6dbb-Photoroom.png";
+import idIcon from "@/assets/hero/da2b0047-719b-4754-910d-55a7da85b5fa-Photoroom.png";
+
+type RingItem = { img: string; color: string; bg: string; scale?: number };
 
 const rings: { size: number; duration: number; reverse: boolean; items: RingItem[] }[] = [
   {
-    size: 360,
-    duration: 32,
+    size: 420,
+    duration: 35,
     reverse: false,
     items: [
-      { kind: "text", label: "Ps", color: "#31A8FF", bg: "#001E36" },
-      { kind: "text", label: "Ai", color: "#FF9A00", bg: "#330000" },
-      { kind: "text", label: "Id", color: "#FF3366", bg: "#49021F" },
-      { kind: "text", label: "Ae", color: "#9999FF", bg: "#00005B" },
-      { kind: "text", label: "CD", color: "#7CC242", bg: "#0E2200" },
-    ],
-  },
-  {
-    size: 470,
-    duration: 50,
-    reverse: false,
-    items: [
-      { kind: "icon", Icon: Palette, color: "#D4AF6E", bg: "#1a1108" },
-      { kind: "icon", Icon: Type, color: "#9B6EDC", bg: "#150a25" },
-      { kind: "icon", Icon: PenTool, color: "#D4AF6E", bg: "#1a1108" },
-      { kind: "icon", Icon: Printer, color: "#9B6EDC", bg: "#150a25" },
-      { kind: "icon", Icon: Share2, color: "#D4AF6E", bg: "#1a1108" },
-      { kind: "icon", Icon: Camera, color: "#9B6EDC", bg: "#150a25" },
-      { kind: "icon", Icon: Layers, color: "#D4AF6E", bg: "#1a1108" },
-      { kind: "icon", Icon: Sparkles, color: "#9B6EDC", bg: "#150a25" },
+      { img: psIcon, color: "#31A8FF", bg: "#001E36", scale: 1.15 },
+      { img: aiIcon, color: "#FF9A00", bg: "#330000", scale: 1.15 },
+      { img: idIcon, color: "#FF3366", bg: "#49021F", scale: 1.15 },
+      { img: aeIcon, color: "#9999FF", bg: "#00005B", scale: 1.15 },
+      { img: cdIcon, color: "#7CC242", bg: "#0E2200", scale: 1.15 },
     ],
   },
 ];
@@ -43,7 +33,7 @@ function OrbitRing({
   duration,
   reverse,
   items,
-  scale,
+  scale: globalScale,
 }: {
   size: number;
   duration: number;
@@ -51,8 +41,7 @@ function OrbitRing({
   items: RingItem[];
   scale: number;
 }) {
-  const scaledSize = size * scale;
-  const chipSize = Math.max(34, 44 * scale);
+  const scaledSize = size * globalScale;
   return (
     <motion.div
       className="absolute left-1/2 top-1/2 rounded-full border border-gold/15"
@@ -67,8 +56,7 @@ function OrbitRing({
     >
       {items.map((it, i) => {
         const angle = (i / items.length) * 360;
-        const isText = it.kind === "text";
-        const w = isText && (it as any).label.length > 2 ? chipSize * 1.5 : chipSize;
+        const chipSize = 54 * globalScale * (it.scale || 1);
         return (
           <div
             key={i}
@@ -76,22 +64,17 @@ function OrbitRing({
             style={{ transform: `rotate(${angle}deg) translateY(-${scaledSize / 2}px)` }}
           >
             <div
-              className="absolute flex items-center justify-center rounded-full glass-strong shadow-glow font-display font-bold"
+              className="absolute flex items-center justify-center rounded-full shadow-glow overflow-hidden"
               style={{
-                width: w,
+                width: chipSize,
                 height: chipSize,
-                background: `linear-gradient(135deg, ${it.bg}, oklch(0.17 0.02 280 / 0.85))`,
-                color: it.color,
+                background: it.bg,
                 transform: `translate(-50%, -50%) rotate(${reverse ? angle : -angle}deg)`,
-                boxShadow: `0 0 18px ${it.color}55`,
-                fontSize: chipSize * 0.36,
+                boxShadow: `0 0 25px ${it.color}55`,
+                border: `1px solid ${it.color}44`,
               }}
             >
-              {it.kind === "text" ? (
-                it.label
-              ) : (
-                <it.Icon size={Math.round(chipSize * 0.5)} strokeWidth={2} />
-              )}
+              <img src={it.img} alt="" className="w-full h-full object-contain p-2" />
             </div>
           </div>
         );
@@ -140,10 +123,10 @@ export function Hero() {
         transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
       />
 
-      <div className="relative z-10 mx-auto w-full max-w-7xl px-6 flex flex-col lg:grid lg:grid-cols-2 gap-6 lg:gap-12 items-center pt-20 lg:pt-0">
-        
+      <div className="relative z-10 mx-auto w-full max-w-7xl px-6 flex flex-col lg:grid lg:grid-cols-2 gap-6 lg:gap-12 items-center pt-32 lg:pt-40">
+
         {/* Mobile Badge */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.5, duration: 0.8 }}
@@ -151,7 +134,7 @@ export function Hero() {
         >
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-gold/30 bg-gold/5 glass backdrop-blur-md">
             <span className="h-2 w-2 rounded-full bg-gold animate-pulse shadow-glow" />
-            <span className="text-xs font-medium tracking-wide text-gold-soft uppercase">Available for freelance</span>
+            <span className="text-xs font-medium tracking-wide text-gold-soft uppercase">Available for freelance Projects</span>
           </div>
         </motion.div>
 
@@ -162,56 +145,58 @@ export function Hero() {
           transition={{ delay: 1.5, duration: 1, ease: "easeOut" }}
           className="flex flex-col items-center lg:items-start text-center lg:text-left space-y-5 lg:space-y-6 order-3 lg:order-1"
         >
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.8, duration: 0.8 }}
             className="hidden lg:inline-flex items-center gap-2 px-4 py-2 rounded-full border border-gold/30 bg-gold/5 glass backdrop-blur-md"
           >
             <span className="h-2 w-2 rounded-full bg-gold animate-pulse shadow-glow" />
-            <span className="text-sm font-medium tracking-wide text-gold-soft uppercase">Available for freelance</span>
+            <span className="text-sm font-medium tracking-wide text-gold-soft uppercase">Available for freelance Projects</span>
           </motion.div>
-          
-          <motion.h1 
+
+          <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 2.0, duration: 0.8 }}
             className="text-5xl sm:text-6xl lg:text-7xl font-display font-bold leading-[1.1]"
+            data-cursorpointertext={true}
           >
             Creative <br className="hidden sm:block" />
             <span className="text-gold-gradient animate-gradient">
-              Visual Artist
+              Designer & <br className="hidden sm:block" /> Visual Storyteller
             </span>
           </motion.h1>
-          
-          <motion.p 
+
+          <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 2.2, duration: 0.8 }}
             className="text-base sm:text-lg md:text-xl text-white/70 max-w-lg font-light leading-relaxed"
+            data-cursorpointertext={true}
           >
-            Hi, I'm <strong className="text-white font-medium">Lakshmi Verma</strong>. I specialize in crafting stunning visual identities, digital illustrations, and immersive brand experiences.
+            Hi, I'm <strong className="text-white font-medium">Lakshmi Verma</strong>. I design impactful visual identities, social media creatives, and print designs that help brands stand out and connect with their audience.
           </motion.p>
-          
-          <motion.div 
+
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 2.4, duration: 0.8 }}
             className="flex flex-wrap justify-center lg:justify-start items-center gap-4 pt-2 lg:pt-4"
           >
-            <a 
-              href="#portfolio" 
+            <a
+              href="#portfolio"
               className="px-6 sm:px-8 py-3 sm:py-3.5 rounded-full bg-gold text-background text-sm sm:text-base font-medium hover:bg-white transition-colors duration-300 shadow-glow"
-              data-cursor="hover"
+              data-cursorpointer={true}
             >
               Explore My Work
             </a>
-            <a 
-              href="#contact" 
+            <a
+              href="#contact"
               className="px-6 sm:px-8 py-3 sm:py-3.5 rounded-full border border-gold/30 text-white text-sm sm:text-base hover:bg-gold/10 transition-colors duration-300"
-              data-cursor="hover"
+              data-cursorpointer={true}
             >
-              Let's Talk
+              Start a Project
             </a>
           </motion.div>
         </motion.div>
@@ -235,7 +220,7 @@ export function Hero() {
             style={{ width: portraitSize, height: portraitSize }}
             animate={{ y: [0, -10, 0] }}
             transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-            data-cursor="hover"
+            data-cursorpointermini={true}
           >
             <img
               src={portrait}

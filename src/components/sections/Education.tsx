@@ -212,12 +212,12 @@ function TimelineItem({ item, index }: { item: typeof items[0], index: number })
             {item.degree}
           </h3>
 
-          <p className="text-white/60 font-medium mb-4 flex items-center gap-2">
+          <p className="text-white/60 font-medium mb-4 flex items-center gap-2" data-cursorpointertext={true}>
             <span className="w-4 h-[1px] bg-gold/50" />
             {item.school}
           </p>
 
-          <p className="text-sm text-white/40 font-light leading-relaxed max-w-md">
+          <p className="text-sm text-white/40 font-light leading-relaxed max-w-md" data-cursorpointertext={true}>
             {item.desc}
           </p>
 

@@ -4,10 +4,10 @@ import portrait from "@/assets/lakshmi-portrait.jpg";
 import { SectionHeading } from "../SectionHeading";
 
 const stats = [
-  { v: "3+", l: "Years Exp." },
-  { v: "50+", l: "Projects" },
-  { v: "4", l: "Brands" },
-  { v: "100%", l: "Passion" },
+  { v: "3+", l: "Years Experience" },
+  { v: "50+", l: "Creatives Designed" },
+  { v: "Multiple", l: "Brands Worked On" },
+  { v: "Always", l: "Dedicated & Consistent" },
 ];
 
 export function About() {
@@ -32,7 +32,7 @@ export function About() {
             <div className="absolute inset-0 bg-gradient-to-tr from-gold/20 via-violet/20 to-gold/20 rounded-[140px] blur-3xl opacity-50" />
             
             {/* Arched Frame */}
-            <div className="relative aspect-[4/5] rounded-t-[200px] rounded-b-[40px] border border-gold/30 p-2.5 bg-background/40 backdrop-blur-sm shadow-luxury">
+            <div className="relative aspect-[4/5] rounded-t-[200px] rounded-b-[40px] border border-gold/30 p-2.5 bg-background/40 backdrop-blur-sm shadow-luxury" data-cursorpointermini={true}>
               <div className="relative h-full w-full rounded-t-[190px] rounded-b-[30px] overflow-hidden">
                 <img
                   src={portrait}
@@ -54,66 +54,10 @@ export function About() {
             >
               <Sparkles className="text-gold w-6 h-6 mb-3 opacity-80" />
               <p className="font-display italic text-lg text-white/90 leading-snug">
-                "Design is <span className="text-gold">intelligence</span> made visible."
+                "Design that <span className="text-gold font-medium">speaks</span>, not just looks good."
               </p>
             </motion.div>
 
-            {/* Floating Decorative Elements (Stars around the border) */}
-            
-            {/* Top side stars */}
-            <motion.div
-              className="absolute -top-10 left-1/2 -translate-x-1/2 text-gold/70 z-30"
-              animate={{ rotate: 360 }}
-              transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-            >
-              <Sparkles className="w-6 h-6 sm:w-9 sm:h-9" />
-            </motion.div>
-            <motion.div
-              className="absolute -top-4 left-[10%] text-gold/50 z-30"
-              animate={{ rotate: -360 }}
-              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-            >
-              <Sparkles className="w-5 h-5 sm:w-7 sm:h-7" />
-            </motion.div>
-            <motion.div
-              className="absolute -top-6 right-[10%] text-gold/60 z-30"
-              animate={{ rotate: 360 }}
-              transition={{ duration: 22, repeat: Infinity, ease: "linear" }}
-            >
-              <Sparkles className="w-6 h-6 sm:w-8 sm:h-8" />
-            </motion.div>
-
-            {/* Left side stars (Moved inside for mobile) */}
-            <motion.div
-              className="absolute top-[20%] left-0 sm:-left-12 text-gold/60 z-30"
-              animate={{ rotate: -360 }}
-              transition={{ duration: 24, repeat: Infinity, ease: "linear" }}
-            >
-              <Sparkles className="w-6 h-6 sm:w-8 sm:h-8" />
-            </motion.div>
-            <motion.div
-              className="absolute top-[50%] left-[-10px] sm:-left-14 text-gold/40 z-30"
-              animate={{ rotate: 360 }}
-              transition={{ duration: 18, repeat: Infinity, ease: "linear" }}
-            >
-              <Sparkles className="w-7 h-7 sm:w-10 sm:h-10" />
-            </motion.div>
-
-            {/* Right side stars (Moved inside for mobile) */}
-            <motion.div
-              className="absolute top-[25%] right-0 sm:-right-12 text-gold/70 z-30"
-              animate={{ rotate: 360 }}
-              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-            >
-              <Sparkles className="w-6 h-6 sm:w-9 sm:h-9" />
-            </motion.div>
-            <motion.div
-              className="absolute top-[55%] right-[-10px] sm:-right-14 text-gold/50 z-30"
-              animate={{ rotate: -360 }}
-              transition={{ duration: 26, repeat: Infinity, ease: "linear" }}
-            >
-              <Sparkles className="w-5 h-5 sm:w-8 sm:h-8" />
-            </motion.div>
           </motion.div>
 
           {/* Right: Typography & Content */}
@@ -128,20 +72,20 @@ export function About() {
               <div className="inline-flex items-center gap-2 px-3 py-1 mb-6 rounded-full border border-violet/30 bg-violet/5 text-violet/80 text-xs tracking-widest uppercase">
                 <Heart className="w-3 h-3" /> Nice to meet you
               </div>
-              <h3 className="font-display text-4xl md:text-5xl leading-[1.1] text-white">
-                Creative & precise <br />
+              <h3 className="font-display text-4xl md:text-5xl leading-[1.1] text-white" data-cursorpointertext={true}>
+                Graphic Designer <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold via-white to-gold animate-gradient italic font-medium">
-                  graphic designer
+                  focused on impactful visuals
                 </span>
               </h3>
             </div>
             
-            <div className="space-y-4 text-white/70 text-base lg:text-lg font-light leading-relaxed">
+            <div className="space-y-4 text-white/70 text-base lg:text-lg font-light leading-relaxed" data-cursorpointertext={true}>
               <p>
-                I'm passionate about crafting meaningful, modern, and aesthetic designs — from striking social media creatives to full brand identities. 
+                I create visually engaging designs for social media and print that help brands communicate clearly and stand out. From posts and ads to brochures and brand materials, I focus on clean, modern, and effective design.
               </p>
               <p>
-                My foundation in typography, color theory, and visual communication helps me turn abstract ideas into beautiful visuals that truly resonate. Always eager to learn, adapt, and bring a touch of elegance to every project.
+                I combine creativity with practical design thinking to deliver work that not only looks good but also serves its purpose. Always learning, improving, and adapting to new trends.
               </p>
             </div>
 
@@ -154,19 +98,23 @@ export function About() {
                   viewport={{ once: true }}
                   transition={{ delay: 0.1 * i }}
                   className="glass rounded-2xl p-5 text-center border border-gold/10 hover:border-gold/40 hover:bg-gold/5 transition-all duration-300 group cursor-default"
+                  data-cursorpointermini={true}
                 >
-                  <div className="font-display text-3xl text-gold group-hover:scale-110 transition-transform duration-500">{s.v}</div>
-                  <div className="mt-2 text-[10px] font-medium uppercase tracking-[0.2em] text-white/50 group-hover:text-gold-soft transition-colors">{s.l}</div>
+                  <div className="font-display text-2xl sm:text-3xl text-gold group-hover:scale-110 transition-transform duration-500">{s.v}</div>
+                  <div className="mt-2 text-[10px] font-medium uppercase tracking-[0.15em] text-white/50 group-hover:text-gold-soft transition-colors leading-tight">{s.l}</div>
                 </motion.div>
               ))}
             </div>
 
-            <div className="pt-4 flex flex-wrap justify-center lg:justify-start gap-3">
-              {["Branding", "Typography", "Social Media", "Posters", "Logos", "Vector Art"].map((t) => (
-                <span key={t} className="border border-gold/20 bg-gold/5 rounded-full px-5 py-2 text-xs tracking-widest uppercase text-gold-soft/90 hover:bg-gold/20 transition-colors cursor-default">
-                  {t}
-                </span>
-              ))}
+            <div className="pt-6 w-full">
+              <p className="text-xs sm:text-sm tracking-[0.2em] uppercase text-gold-soft font-medium leading-loose text-center lg:text-left">
+                Branding <span className="mx-2 text-gold/30">|</span> 
+                Typography <span className="mx-2 text-gold/30">|</span> 
+                Social Media <span className="mx-2 text-gold/30">|</span> 
+                Print Design <span className="mx-2 text-gold/30">|</span> 
+                Logos <span className="mx-2 text-gold/30">|</span> 
+                Vector Art
+              </p>
             </div>
           </motion.div>
         </div>

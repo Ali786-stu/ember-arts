@@ -35,11 +35,10 @@ export function Navbar() {
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? "py-3" : "py-6"}`}
       >
         <div className={`mx-auto flex max-w-7xl items-center justify-between px-6 md:px-10 ${scrolled ? "glass-strong rounded-2xl" : ""}`}
-             style={{ padding: scrolled ? "0.75rem 1.5rem" : undefined }}>
-          <a href="#home" className="font-display text-2xl tracking-tight">
-            <span className="text-gold-gradient">L</span>
-            <span className="text-foreground">V</span>
-            <span className="ml-1 text-xs tracking-[0.3em] text-muted-foreground uppercase">Studio</span>
+          style={{ padding: scrolled ? "0.75rem 1.5rem" : undefined }}>
+          <a href="#home" className="font-display text-2xl tracking-tight" data-cursorpointer={true}>
+            <span className="text-gold-gradient">Graphizine</span>
+            <span className="ml-3 text-xs tracking-[0.3em] text-muted-foreground uppercase">Studio</span>
           </a>
 
           <ul className="hidden md:flex items-center gap-8">
@@ -48,6 +47,7 @@ export function Navbar() {
                 <a
                   href={l.href}
                   className="group relative text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+                  data-cursorpointer={true}
                 >
                   {l.label}
                   <span className="absolute -bottom-1 left-0 h-px w-0 bg-gold transition-all duration-300 group-hover:w-full" />
@@ -59,8 +59,9 @@ export function Navbar() {
           <a
             href="#contact"
             className="hidden md:inline-flex items-center gap-2 rounded-full border border-gold/40 px-5 py-2 text-sm text-gold-gradient hover:bg-gold/10 transition-all"
+            data-cursorpointer={true}
           >
-            Let's Talk
+            Start a Project
           </a>
 
           <button

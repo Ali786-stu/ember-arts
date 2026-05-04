@@ -88,7 +88,7 @@ function CertificateCard({ c, isHovered }: { c: typeof certs[number], isHovered?
           {c.title}
         </h3>
         
-        <p className="text-sm sm:text-base text-white/50 font-light leading-relaxed mb-auto">
+        <p className="text-sm sm:text-base text-white/50 font-light leading-relaxed mb-auto" data-cursorpointertext={true}>
           {c.body}
         </p>
 
@@ -122,7 +122,7 @@ export function Certificates() {
       <div className="mx-auto max-w-7xl relative z-10 w-full">
         <div className="text-center mb-16 md:mb-24">
           <SectionHeading eyebrow="Credentials" title="Recognition & Awards" />
-          <p className="mt-4 text-white/40 font-light max-w-xl mx-auto">
+          <p className="mt-4 text-white/40 font-light max-w-xl mx-auto" data-cursorpointertext={true}>
             Explore my verified professional achievements.
           </p>
         </div>

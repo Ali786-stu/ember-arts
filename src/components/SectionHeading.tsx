@@ -39,6 +39,7 @@ export function SectionHeading({
           viewport={{ once: true }}
           transition={{ delay: 0.3 }}
           className="mt-4 max-w-2xl mx-auto text-muted-foreground"
+          data-cursorpointertext={true}
         >
           {subtitle}
         </motion.p>
