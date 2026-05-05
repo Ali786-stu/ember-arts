@@ -44,6 +44,7 @@
   --animate-glow-pulse: glow-pulse 3s ease-in-out infinite;
   --animate-gradient: gradient-shift 8s ease infinite;
   --animate-marquee: marquee 30s linear infinite;
+  --animate-border-beam: border-beam 4s linear infinite;
 }
 
 :root {
@@ -179,6 +180,11 @@
 @keyframes marquee {
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }
+}
+@keyframes border-beam {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 @keyframes blink {
   0%, 100% { opacity: 1; }

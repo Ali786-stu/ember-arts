@@ -36,7 +36,7 @@ export function Loader() {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.6 }}
             >
-              Crafting Visual Stories
+              Graphic Designer
             </motion.p>
           </div>
         </motion.div>

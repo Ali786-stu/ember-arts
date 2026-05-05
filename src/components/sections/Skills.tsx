@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
 import { SectionHeading } from "../SectionHeading";
-import { 
-  Fingerprint, Type, Share2, PenTool, Image as ImageIcon, 
-  Lightbulb, Target, Clock, RefreshCw, MessageSquare 
+import {
+  Fingerprint, Type, Share2, PenTool, Image as ImageIcon,
+  Lightbulb, Target, Clock, RefreshCw, MessageSquare, Printer
 } from "lucide-react";
 import React, { useState } from "react";
 
@@ -10,6 +10,7 @@ import React, { useState } from "react";
 import softwareImg from "@/assets/skills-software.png";
 import designImg from "@/assets/skills-design.png";
 import professionalImg from "@/assets/skills-professional.png";
+import cdIcon from "@/assets/hero/476a1b78-7a54-430d-bffa-5c8a916327a9-Photoroom.png";
 
 const categories = [
   {
@@ -20,7 +21,7 @@ const categories = [
       { name: "Adobe Photoshop", abbr: "Ps", color: "bg-[#001E36] border-[#31A8FF] text-[#31A8FF]" },
       { name: "Adobe Illustrator", abbr: "Ai", color: "bg-[#330000] border-[#FF9A00] text-[#FF9A00]" },
       { name: "Adobe InDesign", abbr: "Id", color: "bg-[#49021F] border-[#FF3366] text-[#FF3366]" },
-      { name: "CorelDRAW", abbr: "Cd", color: "bg-[#051f14] border-[#10b981] text-[#10b981]" },
+      { name: "CorelDRAW", image: cdIcon, color: "bg-[#051f14] border-[#10b981] text-[#10b981]" },
       { name: "After Effects", abbr: "Ae", color: "bg-[#00005B] border-[#9999FF] text-[#9999FF]" },
     ],
     gradient: "from-blue-600 via-indigo-500 to-purple-600",
@@ -35,8 +36,8 @@ const categories = [
       { name: "Branding & Identity", Icon: Fingerprint, color: "bg-fuchsia-500/10 border-fuchsia-500/30 text-fuchsia-400" },
       { name: "Typography & Layout", Icon: Type, color: "bg-purple-500/10 border-purple-500/30 text-purple-400" },
       { name: "Social Media Design", Icon: Share2, color: "bg-pink-500/10 border-pink-500/30 text-pink-400" },
+      { name: "Print & Marketing Collateral", Icon: Printer, color: "bg-rose-500/10 border-rose-500/30 text-rose-400" },
       { name: "Vector Illustration", Icon: PenTool, color: "bg-violet-500/10 border-violet-500/30 text-violet-400" },
-      { name: "Poster Design", Icon: ImageIcon, color: "bg-rose-500/10 border-rose-500/30 text-rose-400" },
     ],
     gradient: "from-violet-600 via-fuchsia-500 to-pink-500",
     borderHover: "hover:border-violet-500/50",
@@ -87,16 +88,16 @@ function SkillPillar({ cat, i }: { cat: typeof categories[0]; i: number }) {
               key={n}
               className="absolute rounded-full border border-white/20"
               initial={{ width: 0, height: 0, opacity: 0.5, x: mousePos.x, y: mousePos.y }}
-              animate={{ 
-                width: 800, 
-                height: 800, 
+              animate={{
+                width: 800,
+                height: 800,
                 opacity: 0,
                 x: mousePos.x - 400,
                 y: mousePos.y - 400
               }}
-              transition={{ 
-                duration: 3, 
-                repeat: Infinity, 
+              transition={{
+                duration: 3,
+                repeat: Infinity,
                 delay: n * 0.8,
                 ease: "easeOut"
               }}
@@ -108,18 +109,18 @@ function SkillPillar({ cat, i }: { cat: typeof categories[0]; i: number }) {
 
       {/* Dynamic Gradient Background Glow */}
       <div className={`absolute inset-0 bg-gradient-to-br ${cat.gradient} opacity-10 group-hover:opacity-30 transition-opacity duration-700`} />
-      
+
       {/* Shape-Shifting Image Layer */}
-      <motion.div 
+      <motion.div
         className="absolute inset-0 z-0 pointer-events-none overflow-hidden"
         initial={{ borderRadius: "40px" }}
-        animate={{ 
+        animate={{
           borderRadius: isHovered ? "100px 40px 100px 40px" : "40px",
           scale: isHovered ? 1.05 : 1,
         }}
         transition={{ duration: 1, ease: [0.23, 1, 0.32, 1] }}
       >
-        <motion.div 
+        <motion.div
           animate={{
             scale: isHovered ? [1.1, 1.2, 1.1] : [1.05, 1.15, 1.05],
             x: isHovered ? [0, -30, 0] : [0, -15, 0],
@@ -131,16 +132,16 @@ function SkillPillar({ cat, i }: { cat: typeof categories[0]; i: number }) {
             ease: "linear"
           }}
           className="absolute inset-0 bg-cover bg-center opacity-40 mix-blend-luminosity grayscale group-hover:grayscale-0 group-hover:opacity-60 transition-all duration-1000"
-          style={{ backgroundImage: `url('${cat.bgImage}')` }} 
+          style={{ backgroundImage: `url('${cat.bgImage}')` }}
         />
       </motion.div>
-      
+
       {/* Darkening Overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0d0914]/40 to-[#0d0914]/95 pointer-events-none z-10" />
 
       {/* Giant Background Number */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden z-10">
-        <motion.div 
+        <motion.div
           animate={{ y: [0, -15, 0] }}
           transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
           className="font-display italic text-[12rem] lg:text-[18rem] leading-none opacity-[0.04] lg:group-hover:opacity-[0.08] transform lg:group-hover:scale-50 lg:group-hover:-translate-y-24 transition-all duration-1000 ease-[cubic-bezier(0.25,1,0.5,1)] text-transparent"
@@ -170,12 +171,16 @@ function SkillPillar({ cat, i }: { cat: typeof categories[0]; i: number }) {
         <div className="overflow-hidden mt-6 opacity-100 lg:opacity-0 lg:max-h-0 lg:group-hover:opacity-100 lg:group-hover:max-h-[300px] transition-all duration-700 ease-in-out pointer-events-auto">
           <ul className="space-y-4 pt-6 border-t border-white/10">
             {cat.items.map((item, idx) => (
-              <li 
-                key={idx} 
+              <li
+                key={idx}
                 className="flex items-center gap-4 text-white/80 group/item transform translate-y-0 lg:translate-y-4 lg:group-hover:translate-y-0 transition-transform duration-500 ease-out"
                 style={{ transitionDelay: `${idx * 50 + 100}ms` }}
               >
-                {item.abbr ? (
+                {item.image ? (
+                  <div className={`w-7 h-7 flex-none rounded-[4px] border ${item.color} flex items-center justify-center shadow-lg transition-transform duration-300 group-hover/item:scale-110 overflow-hidden`}>
+                    <img src={item.image} alt="" className="w-full h-full object-contain p-1" />
+                  </div>
+                ) : item.abbr ? (
                   <div className={`w-7 h-7 flex-none rounded-[4px] border ${item.color} flex items-center justify-center font-sans font-bold text-[11px] tracking-tight shadow-lg transition-transform duration-300 group-hover/item:scale-110`}>
                     {item.abbr}
                   </div>
@@ -208,16 +213,16 @@ export function Skills() {
           className="whitespace-nowrap font-display italic text-[15rem] leading-none text-transparent"
           style={{ WebkitTextStroke: "2px rgba(255,255,255,1)" }}
         >
-          CREATIVE ARSENAL • DESIGN EXPERTISE • SOFTWARE STACK • CREATIVE ARSENAL • DESIGN EXPERTISE • SOFTWARE STACK • 
+          CREATIVE ARSENAL • DESIGN EXPERTISE • SOFTWARE STACK • CREATIVE ARSENAL • DESIGN EXPERTISE • SOFTWARE STACK •
         </motion.div>
-        
+
         <motion.div
           animate={{ x: [-1000, 0] }}
           transition={{ duration: 45, repeat: Infinity, ease: "linear" }}
           className="whitespace-nowrap font-display text-[15rem] leading-none text-transparent mt-8 ml-[-500px]"
           style={{ WebkitTextStroke: "2px rgba(255,255,255,0.5)" }}
         >
-          AESTHETICS • INNOVATION • ART DIRECTION • AESTHETICS • INNOVATION • ART DIRECTION • 
+          AESTHETICS • INNOVATION • ART DIRECTION • AESTHETICS • INNOVATION • ART DIRECTION •
         </motion.div>
       </div>
 
@@ -225,10 +230,10 @@ export function Skills() {
       <div className="absolute inset-0 bg-gradient-to-r from-[#050505] via-transparent to-[#050505] pointer-events-none z-0" />
 
       <div className="mx-auto max-w-6xl relative z-10 w-full">
-        <SectionHeading 
-          eyebrow="Expertise" 
-          title="The Creative Arsenal" 
-          subtitle="Hover over the pillars to explore my specific skills and tools." 
+        <SectionHeading
+          eyebrow="Expertise"
+          title="Skills & Expertise"
+          subtitle="Explore my core Design Skills and Tools I use daily."
         />
 
         <div className="flex flex-col lg:flex-row w-full h-auto lg:h-[600px] gap-6 mt-8">

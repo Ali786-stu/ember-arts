@@ -7,7 +7,7 @@ const experiences = [
   {
     company: "Digi Epitome Technology",
     role: "Graphic Designer",
-    period: "Feb 2025 — Present",
+    period: "2025 — Present",
     summary: "Social media creatives, branding & posters",
     details: [
       "Social Media Creatives & Ad Designs",
@@ -19,7 +19,7 @@ const experiences = [
   {
     company: "Zaphira Organic Farms",
     role: "Social Media Designer",
-    period: "Aug — Dec 2025",
+    period: "2025",
     summary: "Social media handling & marketing",
     details: [
       "Social media creatives & marketing designs",
@@ -31,7 +31,7 @@ const experiences = [
   {
     company: "The Times Idea",
     role: "Advertising Designer",
-    period: "Jun 2023 — Aug 2025",
+    period: "2023 — 2025",
     summary: "Advertising creatives & campaigns",
     details: [
       "Advertising creatives for major campaigns",
@@ -43,7 +43,7 @@ const experiences = [
   {
     company: "Digifootprints",
     role: "Design Intern",
-    period: "3 Months · Lucknow",
+    period: "Lucknow",
     summary: "Logos, banners, digital ads",
     details: [
       "Logo and brand element design",
