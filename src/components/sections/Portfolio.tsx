@@ -2,17 +2,8 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import { SectionHeading } from "../SectionHeading";
-import s1 from "@/assets/work-social-1.jpg";
-import s2 from "@/assets/work-social-2.jpg";
-import s3 from "@/assets/work-social-3.jpg";
-import st1 from "@/assets/work-standee-1.jpg";
-import st2 from "@/assets/work-standee-2.jpg";
-import p1 from "@/assets/work-poster-1.jpg";
-import p2 from "@/assets/work-poster-2.jpg";
-import b1 from "@/assets/work-brand-1.jpg";
-import b2 from "@/assets/work-brand-2.jpg";
-import a1 from "@/assets/work-ad-1.jpg";
-import a2 from "@/assets/work-ad-2.jpg";
+
+// Furniture Design
 import f1 from "@/assets/furniture/furniture/1st.png";
 import f2 from "@/assets/furniture/furniture/1-2-2026 (2).png";
 import f3 from "@/assets/furniture/furniture/4-4-26.png";
@@ -32,41 +23,167 @@ import f16 from "@/assets/furniture/furniture/Nilkamal Furniture Post 8 Feb 2026
 import f17 from "@/assets/furniture/furniture/Nilkamal Homes Furniture Chair Design Post 6 Feb 2026.png";
 import f18 from "@/assets/furniture/furniture/Nilkamal Homes Vasant Panchami Post 23 Jan 2026.png";
 import f19 from "@/assets/furniture/furniture/SHRI 1 .png";
+import f20 from "@/assets/furniture/furniture/f1.jpeg";
+import f21 from "@/assets/furniture/furniture/f2.jpeg";
+
+// Meta Ads
+import ma1 from "@/assets/Meta Ads/Meta Ads/111.jpg";
+import ma2 from "@/assets/Meta Ads/Meta Ads/18-7-2026.png";
+import ma3 from "@/assets/Meta Ads/Meta Ads/222.png";
+import ma4 from "@/assets/Meta Ads/Meta Ads/333.png";
+import ma5 from "@/assets/Meta Ads/Meta Ads/ads final crm.jpg";
+import ma6 from "@/assets/Meta Ads/Meta Ads/ads for a website (2).jpg";
+import ma7 from "@/assets/Meta Ads/Meta Ads/Akshaya Tritiya.png";
+import ma8 from "@/assets/Meta Ads/Meta Ads/Brahmavarchas Yoga Post.png";
+import ma9 from "@/assets/Meta Ads/Meta Ads/creative ads.jpg";
+import ma10 from "@/assets/Meta Ads/Meta Ads/crm ads.png";
+import ma11 from "@/assets/Meta Ads/Meta Ads/crm reel size post.png";
+import ma12 from "@/assets/Meta Ads/Meta Ads/Gemini_Generated_Image_4hf1zx4hf1zx4hf1 (2).png";
+import ma13 from "@/assets/Meta Ads/Meta Ads/guru (2).png";
+import ma14 from "@/assets/Meta Ads/Meta Ads/Instagram-Post-Mockups.png";
+import ma15 from "@/assets/Meta Ads/Meta Ads/Instagram.png";
+import ma16 from "@/assets/Meta Ads/Meta Ads/M Pharma.jpg";
+import ma17 from "@/assets/Meta Ads/Meta Ads/new ad  21-4-2026.png";
+import ma18 from "@/assets/Meta Ads/Meta Ads/new post 20-4-2026.png";
+import ma19 from "@/assets/Meta Ads/Meta Ads/passinate 222.png";
+import ma20 from "@/assets/Meta Ads/Meta Ads/PASSIONATE-Recovered.png";
+import ma21 from "@/assets/Meta Ads/Meta Ads/Untitled design (6).png";
+import ma22 from "@/assets/Meta Ads/Meta Ads/website new add.png";
+import ma23 from "@/assets/Meta Ads/Meta Ads/website.png";
+import ma24 from "@/assets/Meta Ads/Meta Ads/yoga.png";
+
+// Medical & Healthcare
+import mh1 from "@/assets/Medical & Healthcare/Medical & Healthcare/1 (2).png";
+import mh2 from "@/assets/Medical & Healthcare/Medical & Healthcare/1.png";
+import mh3 from "@/assets/Medical & Healthcare/Medical & Healthcare/11.png";
+import mh4 from "@/assets/Medical & Healthcare/Medical & Healthcare/12.png";
+import mh5 from "@/assets/Medical & Healthcare/Medical & Healthcare/13.png";
+import mh6 from "@/assets/Medical & Healthcare/Medical & Healthcare/14.png";
+import mh7 from "@/assets/Medical & Healthcare/Medical & Healthcare/15.png";
+import mh8 from "@/assets/Medical & Healthcare/Medical & Healthcare/2 (3).png";
+import mh9 from "@/assets/Medical & Healthcare/Medical & Healthcare/2.png";
+import mh10 from "@/assets/Medical & Healthcare/Medical & Healthcare/2132, Vipul Khand, Gomti Nagar, Near Sahara Shahar Lucknow (3).png";
+import mh11 from "@/assets/Medical & Healthcare/Medical & Healthcare/3.png";
+import mh12 from "@/assets/Medical & Healthcare/Medical & Healthcare/5.png";
+import mh13 from "@/assets/Medical & Healthcare/Medical & Healthcare/Ad Post 30 Oct 2025.png";
+import mh14 from "@/assets/Medical & Healthcare/Medical & Healthcare/Blue and White Modern Dental Care Instagram Post (3).png";
+import mh15 from "@/assets/Medical & Healthcare/Medical & Healthcare/Blue and White Modern Home Appliance Repair Instagram Post.png";
+import mh16 from "@/assets/Medical & Healthcare/Medical & Healthcare/Brahmavarchas Yoga Package  Ad Post 5 Nov 2025 2.png";
+import mh17 from "@/assets/Medical & Healthcare/Medical & Healthcare/Brahmavarchas Yoga Post 13 Nov 2025.png";
+import mh18 from "@/assets/Medical & Healthcare/Medical & Healthcare/Brahmavarchas Yoga Post 17 Nov 2025.png";
+import mh19 from "@/assets/Medical & Healthcare/Medical & Healthcare/Brahmavarchas Yoga Post 27 Nov 2025.png";
+import mh20 from "@/assets/Medical & Healthcare/Medical & Healthcare/Brahmavarchas Yoga Post 6 Nov 2025 2.png";
+import mh21 from "@/assets/Medical & Healthcare/Medical & Healthcare/Brahmavarchas Yoga Post 7 Nov 2025.png";
+import mh22 from "@/assets/Medical & Healthcare/Medical & Healthcare/varanasi creative.jpg";
+import mh23 from "@/assets/Medical & Healthcare/Medical & Healthcare/YOGA.......png";
+
+// GYM CREATIVE
+import gc1 from "@/assets/GYM CREATIVE/GYM CREATIVE/Black and Blue Modern Minimalist Fitness Apparel Instagram Post (2).png";
+import gc2 from "@/assets/GYM CREATIVE/GYM CREATIVE/Black and Orange Modern Gym Instagram Post (1).png";
+import gc3 from "@/assets/GYM CREATIVE/GYM CREATIVE/Black Orange Modern Fitness Gym Instagram Post (2).png";
+import gc4 from "@/assets/GYM CREATIVE/GYM CREATIVE/Consistency (2).jpg";
+import gc5 from "@/assets/GYM CREATIVE/GYM CREATIVE/creative psot.png";
+import gc6 from "@/assets/GYM CREATIVE/GYM CREATIVE/Gym Discipline.jpg";
+import gc7 from "@/assets/GYM CREATIVE/GYM CREATIVE/gym fitness (2).png";
+import gc8 from "@/assets/GYM CREATIVE/GYM CREATIVE/Transformation.png";
+import gc9 from "@/assets/GYM CREATIVE/GYM CREATIVE/Untitled-2 (2).png";
+import gc10 from "@/assets/GYM CREATIVE/GYM CREATIVE/Weight Loss Tips.jpg";
+
+// Educational creative
+import ec1 from "@/assets/Educational creative/Educational creative/1 creative (2).jpg";
+import ec2 from "@/assets/Educational creative/Educational creative/111111.png";
+import ec3 from "@/assets/Educational creative/Educational creative/ALL CREATIVS.jpg";
+import ec4 from "@/assets/Educational creative/Educational creative/creative.png";
+import ec5 from "@/assets/Educational creative/Educational creative/ojd eduversity ,_.png";
+import ec6 from "@/assets/Educational creative/Educational creative/Practice Material.jpg";
+import ec7 from "@/assets/Educational creative/Educational creative/School Admission Images Changed.png";
+import ec8 from "@/assets/Educational creative/Educational creative/SUMMER TRAINING 2026 (3).png";
+import ec9 from "@/assets/Educational creative/Educational creative/SUMMER TRAINING 2026.png";
+import ec10 from "@/assets/Educational creative/Educational creative/Untitled design (7).png";
+import ec11 from "@/assets/Educational creative/Educational creative/Untitled design (8).png";
+import ec12 from "@/assets/Educational creative/Educational creative/Untitled-1 (4).jpg";
+import ec13 from "@/assets/Educational creative/Educational creative/WhatsApp Image 2026-03-01 at 5.29.36 PM.jpeg";
+import ec14 from "@/assets/Educational creative/Educational creative/WhatsApp Image 2026-03-07 at 3.50.52 PM.jpeg";
+import ec15 from "@/assets/Educational creative/Educational creative/WhatsApp Image 2026-03-10 at 4.54.03 PM.jpeg";
+import ec16 from "@/assets/Educational creative/Educational creative/WhatsApp Image 2026-03-10 at 4.54.17 PM (2).jpeg";
+import ec17 from "@/assets/Educational creative/Educational creative/WhatsApp Image 2026-03-10 at 4.54.31 PM.jpeg";
+import ec18 from "@/assets/Educational creative/Educational creative/White and Red Modern Study In USA Instagram Post (1).png";
+
+// Appliance Marketing Post
+import ap1 from "@/assets/Appliance Marketing Post/Appliance Marketing Post/Aapka RO Safe Hai.png";
+import ap2 from "@/assets/Appliance Marketing Post/Appliance Marketing Post/cob light.png";
+import ap3 from "@/assets/Appliance Marketing Post/Appliance Marketing Post/creative 2.png";
+import ap4 from "@/assets/Appliance Marketing Post/Appliance Marketing Post/fan.png";
+import ap5 from "@/assets/Appliance Marketing Post/Appliance Marketing Post/SAFETY.png";
+import ap6 from "@/assets/Appliance Marketing Post/Appliance Marketing Post/SQUARE FAN.png";
+import ap7 from "@/assets/Appliance Marketing Post/Appliance Marketing Post/summer.png";
+import ap8 from "@/assets/Appliance Marketing Post/Appliance Marketing Post/SWITCH.png";
+import ap9 from "@/assets/Appliance Marketing Post/Appliance Marketing Post/USB Star 4+1 Surge & Spikeguard.png";
+import ap10 from "@/assets/Appliance Marketing Post/Appliance Marketing Post/White Blue Minimalist HVAC Services Instagram Post.png";
 
 type Item = { src: string; title: string; client: string; tall?: boolean; gallery?: string[] };
 const data: Record<string, Item[]> = {
-  "Social Media": [
+  "Meta Ads": [
+    { 
+      src: ma1, 
+      title: "Meta Ads Showcase", 
+      client: "Meta Ads",
+      gallery: [ma1, ma2, ma3, ma4, ma5, ma6, ma7, ma8, ma9, ma10, ma11, ma12, ma13, ma14, ma15, ma16, ma17, ma18, ma19, ma20, ma21, ma22, ma23, ma24]
+    }
+  ],
+  "Furniture Design": [
     { 
       src: f1, 
-      title: "Furniture Brand Creatives", 
-      client: "Social Media",
-      gallery: [f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12, f13, f14, f15, f16, f17, f18, f19]
-    },
-    { src: s2, title: "Organic Farm Story", client: "Zaphira Farms" },
-    { src: s3, title: "Beauty Brand Carousel", client: "Studio Edit" },
+      title: "Luxury Furniture Creatives", 
+      client: "Furniture Design",
+      gallery: [f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12, f13, f14, f15, f16, f17, f18, f19, f20, f21]
+    }
   ],
-  "Print Design": [
-    { src: st1, title: "Premium Roll-up Banner", client: "Corporate Event", tall: true },
-    { src: st2, title: "Product Launch Standee", client: "Brand Launch", tall: true },
-    { src: p1, title: "Cinema Poster Series", client: "Editorial", tall: true },
-    { src: p2, title: "Festival Celebration", client: "Community", tall: true },
+  "Medical & Healthcare": [
+    { 
+      src: mh1, 
+      title: "Healthcare Brandings", 
+      client: "Medical & Healthcare",
+      gallery: [mh1, mh2, mh3, mh4, mh5, mh6, mh7, mh8, mh9, mh10, mh11, mh12, mh13, mh14, mh15, mh16, mh17, mh18, mh19, mh20, mh21, mh22, mh23]
+    }
   ],
-  "Branding": [
-    { src: b1, title: "Monogram Identity", client: "Luxury Brand" },
-    { src: b2, title: "Stationery System", client: "Studio Brand" },
+  "GYM CREATIVE": [
+    { 
+      src: gc1, 
+      title: "Fitness & Gym Ads", 
+      client: "GYM CREATIVE",
+      gallery: [gc1, gc2, gc3, gc4, gc5, gc6, gc7, gc8, gc9, gc10]
+    }
   ],
-  "Digital Ads": [
-    { src: a1, title: "E-commerce Hero Ad", client: "Times Idea" },
-    { src: a2, title: "Mobile App Promotion", client: "Digi Epitome" },
+  "Educational creative": [
+    { 
+      src: ec1, 
+      title: "Educational Social Posts", 
+      client: "Educational creative",
+      gallery: [ec1, ec2, ec3, ec4, ec5, ec6, ec7, ec8, ec9, ec10, ec11, ec12, ec13, ec14, ec15, ec16, ec17, ec18]
+    }
+  ],
+  "Appliance Marketing Post": [
+    { 
+      src: ap1, 
+      title: "Home Appliance Ads", 
+      client: "Appliance Marketing Post",
+      gallery: [ap1, ap2, ap3, ap4, ap5, ap6, ap7, ap8, ap9, ap10]
+    }
   ],
 };
 
-const tabs = Object.keys(data);
+const tabs = ["All", ...Object.keys(data)];
 
 export function Portfolio() {
   const [tab, setTab] = useState(tabs[0]);
   const [open, setOpen] = useState<Item | null>(null);
   const [selectedImg, setSelectedImg] = useState<string | null>(null);
+
+  // Filter items based on selected tab
+  const filteredItems = tab === "All" 
+    ? Object.values(data).flat() 
+    : data[tab];
 
   // Prevent background scroll and hide navbar when modal is open
   useEffect(() => {
@@ -122,25 +239,27 @@ export function Portfolio() {
       <div className="mx-auto max-w-7xl">
         <SectionHeading eyebrow="Portfolio" title="My Work" subtitle="A selection of my Best Design Work across Branding, Social Media, and Print." />
 
-        <div className="flex flex-wrap justify-center gap-2 mb-12">
-          {tabs.map((t) => (
-            <button
-              key={t}
-              onClick={() => setTab(t)}
-              data-cursorpointer={true}
-              className={`relative rounded-full px-5 py-2.5 text-sm font-medium transition-all ${tab === t ? "text-primary-foreground" : "text-muted-foreground hover:text-foreground"
-                }`}
-            >
-              {tab === t && (
-                <motion.div
-                  layoutId="tab-pill"
-                  className="absolute inset-0 bg-gold rounded-full shadow-luxury"
-                  transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                />
-              )}
-              <span className="relative z-10">{t}</span>
-            </button>
-          ))}
+        <div className="flex justify-start md:justify-center overflow-x-auto no-scrollbar gap-2 mb-12 pb-4">
+          <div className="flex flex-nowrap gap-2">
+            {tabs.map((t) => (
+              <button
+                key={t}
+                onClick={() => setTab(t)}
+                data-cursorpointer={true}
+                className={`relative rounded-full px-5 py-2.5 text-sm font-medium transition-all whitespace-nowrap ${tab === t ? "text-primary-foreground" : "text-muted-foreground hover:text-foreground"
+                  }`}
+              >
+                {tab === t && (
+                  <motion.div
+                    layoutId="tab-pill"
+                    className="absolute inset-0 bg-gold rounded-full shadow-luxury"
+                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                  />
+                )}
+                <span className="relative z-10">{t}</span>
+              </button>
+            ))}
+          </div>
         </div>
 
         <AnimatePresence mode="wait">
@@ -152,15 +271,16 @@ export function Portfolio() {
             transition={{ duration: 0.4 }}
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
           >
-            {data[tab].map((item, i) => (
+            {filteredItems.map((item, i) => (
               <motion.div
                 key={item.src}
+                layout
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: i * 0.08 }}
                 onClick={() => setOpen(item)}
                 data-cursorpointer={true}
-                className={`group relative overflow-hidden rounded-3xl glass cursor-none border-[3px] border-gold/40 hover:border-gold transition-all duration-700 shadow-[0_20px_50px_rgba(212,175,55,0.1)] ${item.tall ? "md:row-span-2 aspect-[3/5]" : "aspect-square"
+                className={`group relative overflow-hidden rounded-3xl glass cursor-none border-[3px] border-gold/40 hover:border-gold transition-all duration-700 shadow-[0_20px_50_rgba(212,175,55,0.1)] ${item.tall ? "md:row-span-2 aspect-[3/5]" : "aspect-square"
                   }`}
               >
                 <img
@@ -171,7 +291,12 @@ export function Portfolio() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent opacity-60 group-hover:opacity-90 transition-opacity duration-500" />
                 <div className="absolute inset-x-6 bottom-6 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                  <h4 className="mt-1 font-display text-xl text-foreground">{item.title}</h4>
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className="px-2 py-1 rounded-md bg-gold/20 border border-gold/30 text-[10px] text-gold font-bold uppercase tracking-widest">
+                      {item.client}
+                    </span>
+                  </div>
+                  <h4 className="mt-1 font-display text-xl text-white">{item.title}</h4>
                   <span className="mt-3 inline-flex items-center gap-2 text-xs text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity">
                     View Project →
                   </span>
@@ -193,7 +318,8 @@ export function Portfolio() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[9999] bg-[#050505] overflow-y-scroll overflow-x-hidden select-none"
+            className="fixed inset-0 z-[9999] bg-[#050505] overflow-y-auto overflow-x-hidden select-none"
+            data-lenis-prevent
           >
             {/* Gallery Layout for Album items */}
             {open.gallery ? (
@@ -284,6 +410,7 @@ export function Portfolio() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             className="fixed inset-0 z-[10000] bg-black/98 backdrop-blur-3xl flex flex-col items-center justify-center p-4 md:p-12 overflow-hidden"
+            data-lenis-prevent
           >
             {/* Nav Buttons - Elegant Responsive Design */}
             <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 flex justify-between z-50 pointer-events-none px-4 md:px-10">
