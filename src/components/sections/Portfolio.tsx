@@ -124,49 +124,49 @@ import ap10 from "@/assets/Appliance Marketing Post/Appliance Marketing Post/Whi
 type Item = { src: string; title: string; client: string; tall?: boolean; gallery?: string[] };
 const data: Record<string, Item[]> = {
   "Meta Ads": [
-    { 
-      src: ma1, 
-      title: "Meta Ads Showcase", 
+    {
+      src: ma1,
+      title: "Meta Ads",
       client: "Meta Ads",
       gallery: [ma1, ma2, ma3, ma4, ma5, ma6, ma7, ma8, ma9, ma10, ma11, ma12, ma13, ma14, ma15, ma16, ma17, ma18, ma19, ma20, ma21, ma22, ma23, ma24]
     }
   ],
   "Furniture Design": [
-    { 
-      src: f1, 
-      title: "Luxury Furniture Creatives", 
+    {
+      src: f1,
+      title: "Furniture Design",
       client: "Furniture Design",
       gallery: [f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12, f13, f14, f15, f16, f17, f18, f19, f20, f21]
     }
   ],
   "Medical & Healthcare": [
-    { 
-      src: mh1, 
-      title: "Healthcare Brandings", 
+    {
+      src: mh1,
+      title: "Medical & Healthcare",
       client: "Medical & Healthcare",
       gallery: [mh1, mh2, mh3, mh4, mh5, mh6, mh7, mh8, mh9, mh10, mh11, mh12, mh13, mh14, mh15, mh16, mh17, mh18, mh19, mh20, mh21, mh22, mh23]
     }
   ],
   "GYM CREATIVE": [
-    { 
-      src: gc1, 
-      title: "Fitness & Gym Ads", 
+    {
+      src: gc1,
+      title: "GYM CREATIVE",
       client: "GYM CREATIVE",
       gallery: [gc1, gc2, gc3, gc4, gc5, gc6, gc7, gc8, gc9, gc10]
     }
   ],
   "Educational creative": [
-    { 
-      src: ec1, 
-      title: "Educational Social Posts", 
+    {
+      src: ec1,
+      title: "Educational creative",
       client: "Educational creative",
       gallery: [ec1, ec2, ec3, ec4, ec5, ec6, ec7, ec8, ec9, ec10, ec11, ec12, ec13, ec14, ec15, ec16, ec17, ec18]
     }
   ],
   "Appliance Marketing Post": [
-    { 
-      src: ap1, 
-      title: "Home Appliance Ads", 
+    {
+      src: ap1,
+      title: "Appliance Marketing Post",
       client: "Appliance Marketing Post",
       gallery: [ap1, ap2, ap3, ap4, ap5, ap6, ap7, ap8, ap9, ap10]
     }
@@ -181,15 +181,15 @@ export function Portfolio() {
   const [selectedImg, setSelectedImg] = useState<string | null>(null);
 
   // Filter items based on selected tab
-  const filteredItems = tab === "All" 
-    ? Object.values(data).flat() 
+  const filteredItems = tab === "All"
+    ? Object.values(data).flat()
     : data[tab];
 
   // Prevent background scroll and hide navbar when modal is open
   useEffect(() => {
     const navbar = document.querySelector('nav');
     const progressBar = document.querySelector('.fixed.top-0.left-0.right-0.z-\\[60\\]');
-    
+
     if (open) {
       document.body.style.overflow = "hidden";
       if (navbar) (navbar as HTMLElement).style.display = "none";
@@ -199,7 +199,7 @@ export function Portfolio() {
       if (navbar) (navbar as HTMLElement).style.display = "block";
       if (progressBar) (progressBar as HTMLElement).style.display = "block";
     }
-    return () => { 
+    return () => {
       document.body.style.overflow = "unset";
       if (navbar) (navbar as HTMLElement).style.display = "block";
       if (progressBar) (progressBar as HTMLElement).style.display = "block";
@@ -323,7 +323,7 @@ export function Portfolio() {
           >
             {/* Gallery Layout for Album items */}
             {open.gallery ? (
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
@@ -363,9 +363,9 @@ export function Portfolio() {
                           <div className="absolute inset-[-1px] rounded-[inherit] p-[3px] bg-gradient-to-r from-transparent via-gold to-transparent animate-border-beam bg-[length:200%_100%]" />
                         </div>
 
-                        <img 
-                          src={img} 
-                          alt={`${open.title} ${idx + 1}`} 
+                        <img
+                          src={img}
+                          alt={`${open.title} ${idx + 1}`}
                           className="w-full h-full object-cover transition-transform duration-[1.5s] group-hover:scale-110 relative z-10"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-700 flex flex-col justify-end p-6 md:p-8">
@@ -423,7 +423,7 @@ export function Portfolio() {
               >
                 <ChevronLeft className="w-6 h-6 md:w-10 md:h-10 text-white/70 group-hover:text-gold transition-colors" strokeWidth={1} />
               </motion.button>
-              
+
               <motion.button
                 whileHover={{ scale: 1.1, x: -5 }}
                 whileTap={{ scale: 0.9 }}
@@ -447,16 +447,16 @@ export function Portfolio() {
               <div className="w-full h-full relative rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl border border-white/10">
                 {/* Lightbox Running Border */}
                 <div className="absolute inset-[-1px] rounded-[inherit] p-[2px] bg-gradient-to-r from-transparent via-gold to-transparent animate-border-beam bg-[length:200%_100%] z-0" />
-                
+
                 <AnimatePresence mode="wait">
-                  <motion.img 
+                  <motion.img
                     key={selectedImg}
                     initial={{ opacity: 0, scale: 0.9, filter: "blur(10px)" }}
                     animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
                     exit={{ opacity: 0, scale: 1.1, filter: "blur(10px)" }}
                     transition={{ duration: 0.5, ease: "easeOut" }}
-                    src={selectedImg} 
-                    alt="Enlarged view" 
+                    src={selectedImg}
+                    alt="Enlarged view"
                     className="w-full h-full object-contain relative z-10 bg-[#050505]/50"
                   />
                 </AnimatePresence>
